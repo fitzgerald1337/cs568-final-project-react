@@ -6,12 +6,12 @@ const Car = (props) => {
   return (
     <div>
 
-      <h5>
+      <h3>
         {props.year} {props.make} {props.model}
+      </h3>
+      <h5>
+        {'$' + props.price}
       </h5>
-      <h6>
-        {props.price}
-      </h6>
       <p>
         {props.description}
       </p>

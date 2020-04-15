@@ -1,47 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import axios from 'axios'
 import Header from './Header'
 import SearchBar from './SearchBar'
 import CarTable from './CarTable'
 import AddCar from './AddCar'
 import ReviewList from './ReviewList'
 import AddReview from './AddReview'
+import Login from './Login'
 
 
 const CarDashboard = () => {
 
-  // axios.get()
+  const [state, setState] = useState({ data: [] })
 
-  //setState with axios data
-
-  const [state, setState] = useState({
-    cars: [
-      {
-        carId: 1,
-        make: 'Toyota',
-        model: 'Corolla',
-        year: '2001',
-        price: '$1,000',
-        description: 'Old beater car. Reliable but not stylish at all.'
-      },
-      {
-        carId: 2,
-        make: 'BMW',
-        model: '528i',
-        year: '1999',
-        price: '$1,500',
-        description: 'Classic vintage car with a modern, luxurious feel.'
-      },
-      {
-        carId: 3,
-        make: 'Porsche',
-        model: '911',
-        year: '2020',
-        price: '$98,000',
-        description: 'High-performance, rear-engined sports car. Iconic.'
-      }
-    ],
+  useEffect(() => {
+    axios.post('http://localhost:3000/login', {
+      'email': 'fitzgerald1337@gmail.com',
+      'password': 'abcd1234'
+    })
+      .then(res => {
+        return axios.get(`http://localhost:3000/user/car?secret_token=${res.data.token}`)
+      })
+      .then(res => {
+        setState(res)
+      })
   })
+
 
   return (
     <div>
@@ -52,8 +37,10 @@ const CarDashboard = () => {
             <Link to='/add-new-car'>
               <button>ADD NEW CAR</button>
             </Link>
+            {/*
             <SearchBar />
-            <CarTable cars={state.cars} />
+            */}
+            <CarTable cars={state.data} />
           </Route>
           <Route path='/add-new-car' exact>
             <AddCar />
@@ -64,6 +51,11 @@ const CarDashboard = () => {
           <Route path='/leave-review/:id' exact>
             <AddReview />
           </Route>
+          {/*
+          <Route path='/login' exact>
+            <Login />
+          </Route>
+          */}
         </Switch>
       </Router>
     </div>

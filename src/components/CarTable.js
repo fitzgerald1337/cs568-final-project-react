@@ -8,8 +8,8 @@ const CarTable = (props) => {
       {props.cars.map((item) => {
         return (
           <Car
-            key={item.carId}
-            id={item.carId}
+            key={item._id}
+            id={item._id}
             make={item.make}
             model={item.model}
             year={item.year}

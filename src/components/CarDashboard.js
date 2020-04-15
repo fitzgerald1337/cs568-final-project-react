@@ -1,9 +1,18 @@
 import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Header from './Header'
 import SearchBar from './SearchBar'
 import CarTable from './CarTable'
+import AddCar from './AddCar'
+import ReviewList from './ReviewList'
+import AddReview from './AddReview'
+
 
 const CarDashboard = () => {
+
+  // axios.get()
+
+  //setState with axios data
 
   const [state, setState] = useState({
     cars: [
@@ -32,55 +41,31 @@ const CarDashboard = () => {
         description: 'High-performance, rear-engined sports car. Iconic.'
       }
     ],
-    reviews: [
-      {
-        carId: 1,
-        reviews: [
-          {
-            userId: 1,
-            review: 'Here is a sample review about the 2001 Toyota Corolla.'
-          },
-          {
-            userId: 2,
-            review: 'Here is a second review about the 2001 Toyota Corolla.'
-          }
-        ]
-      },
-      {
-        carId: 2,
-        reviews: [
-          {
-            userId: 1,
-            review: 'Here is a sample review about the BMW 528i.'
-          },
-          {
-            userId: 2,
-            review: 'Here is a second review about the BMW 528i.'
-          }
-        ]
-      },
-      {
-        carId: 3,
-        reviews: [
-          {
-            userId: 1,
-            review: 'Here is a sample review about the Porsche 911.'
-          },
-          {
-            userId: 2,
-            review: 'Here is a second review about the Porsche 911.'
-          }
-        ]
-      }
-    ]
   })
 
   return (
     <div>
-      <Header />
-      <button>ADD NEW CAR</button>
-      <SearchBar />
-      <CarTable cars={state.cars} />
+      <Router>
+        <Switch>
+          <Route path='/' exact>
+            <Header />
+            <Link to='/add-new-car'>
+              <button>ADD NEW CAR</button>
+            </Link>
+            <SearchBar />
+            <CarTable cars={state.cars} />
+          </Route>
+          <Route path='/add-new-car' exact>
+            <AddCar />
+          </Route>
+          <Route path='/see-all-reviews/:id' exact>
+            <ReviewList />
+          </Route>
+          <Route path='/leave-review/:id' exact>
+            <AddReview />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   )
 

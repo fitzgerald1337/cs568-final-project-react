@@ -1,23 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Review from './Review'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 const ReviewList = (props) => {
-  
-  axios.get('http://localhost:3000/comment')
+
+  const myJwt = window.sessionStorage.getItem('jwt')
+  const [state, setState] = useState({ data: [] })
+  const { id } = useParams()
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/user/comment/${id}?secret_token=${myJwt}`)
+      .then(res => {
+        setState(res)
+      })
+  }, [])
+
+  console.log(state)
 
   return (
     <div>
-      {props.reviews.map((item) => {
+      {state.data.map((item, index) => {
         return (
-          <div>
-            {item.reviews.map((review) => {
-              return (
-                <Review review={review.review}
-                />
-              )
-            })}
-          </div>
+          <Review
+            key={index}
+            review={item}
+          />
         )
       })}
     </div>

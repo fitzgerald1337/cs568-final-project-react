@@ -1,10 +1,10 @@
 import React from 'react'
+import AddReviewForm from './AddReviewForm'
 
 const AddReview = (props) => {
   return (
     <div>
-      <label for='review'>Leave a review:</label>
-      <input type='textarea' name='review' />
+      <AddReviewForm />
     </div>
   )
 }

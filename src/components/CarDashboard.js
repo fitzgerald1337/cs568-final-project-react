@@ -20,7 +20,7 @@ const CarDashboard = () => {
       .then(res => {
         setState(res)
       })
-  })
+  }, [])
 
 
   return (

@@ -7,6 +7,7 @@ const ReviewList = (props) => {
 
   const myJwt = window.sessionStorage.getItem('jwt')
   const [state, setState] = useState({ data: [] })
+  const [descendingBool, setDescendingBool] = useState(false)
   const { id } = useParams()
 
   useEffect(() => {
@@ -16,13 +17,21 @@ const ReviewList = (props) => {
       })
   }, [])
 
-  console.log(state)
+  const toggleDescending = () => {
+    setDescendingBool(!descendingBool)
+    setState({ data: state.data.slice().reverse() })
+  }
+
+  useEffect(() => {
+    localStorage.setItem("use-descending", descendingBool)
+  }, [descendingBool])
 
   return (
     <div>
+      <button onClick={() => toggleDescending()}>TOGGLE ASCENDING/DESCENDING</button>
       {state.data.map((item, index) => {
         return (
-          <Review
+          <Review 
             key={index}
             review={item}
           />

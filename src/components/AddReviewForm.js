@@ -22,7 +22,7 @@ const AddReviewForm = () => {
       .then(res => {
         if (res) {
           alert('Review saved successfully.')
-          history.push('/')
+          history.push('/dashboard')
         }
       })
       .catch(err => {

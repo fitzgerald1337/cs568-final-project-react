@@ -27,7 +27,7 @@ const AddCarForm = () => {
     })
       .then(res => {
         if (res) {
-          history.push('/')
+          history.push('/dashboard')
         }
       })
       .catch(err => {

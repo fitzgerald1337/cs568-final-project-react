@@ -8,6 +8,7 @@ import AddCar from './AddCar'
 import ReviewList from './ReviewList'
 import AddReview from './AddReview'
 import Login from './Login'
+import SignupForm from './SignupForm'
 
 
 const CarDashboard = () => {
@@ -27,7 +28,7 @@ const CarDashboard = () => {
     <div>
       <Router>
         <Switch>
-          <Route path='/' exact>
+          <Route path='/dashboard' exact>
             <Header />
             <Link to='/add-new-car'>
               <button>ADD NEW CAR</button>
@@ -46,8 +47,11 @@ const CarDashboard = () => {
           <Route path='/leave-review/:id' exact>
             <AddReview />
           </Route>
-          <Route path='/login' exact>
+          <Route path='/' exact>
             <Login />
+          </Route>
+          <Route path='/signup' exact>
+            <SignupForm />
           </Route>
         </Switch>
       </Router>

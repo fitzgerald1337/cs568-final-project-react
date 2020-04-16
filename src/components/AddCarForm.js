@@ -43,6 +43,8 @@ const AddCarForm = () => {
   }
 
   return (
+    <div>
+    <h2>Enter car information below.</h2>
     <form onSubmit={handleSubmit}>
       <label>
         Make:
@@ -76,6 +78,7 @@ const AddCarForm = () => {
       </label>
       <input type='submit' value='Submit' />
     </form>
+    </div>
   )
 }
 

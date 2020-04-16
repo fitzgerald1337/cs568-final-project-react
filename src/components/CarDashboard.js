@@ -11,17 +11,12 @@ import Login from './Login'
 
 
 const CarDashboard = () => {
+  const myJwt = window.sessionStorage.getItem('jwt')
 
   const [state, setState] = useState({ data: [] })
 
   useEffect(() => {
-    axios.post('http://localhost:3000/login', {
-      'email': 'fitzgerald1337@gmail.com',
-      'password': 'abcd1234'
-    })
-      .then(res => {
-        return axios.get(`http://localhost:3000/user/car?secret_token=${res.data.token}`)
-      })
+    axios.get(`http://localhost:3000/user/car?secret_token=${myJwt}`)
       .then(res => {
         setState(res)
       })
@@ -51,11 +46,9 @@ const CarDashboard = () => {
           <Route path='/leave-review/:id' exact>
             <AddReview />
           </Route>
-          {/*
           <Route path='/login' exact>
             <Login />
           </Route>
-          */}
         </Switch>
       </Router>
     </div>

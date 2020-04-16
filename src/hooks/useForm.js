@@ -12,7 +12,11 @@ const useForm = (callback) => {
     event.persist()
     setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}))
   }
-  return { handleSubmit, handleInputChange, inputs }
+  return {
+    handleSubmit,
+    handleInputChange,
+    inputs
+  }
 }
 
 export default useForm

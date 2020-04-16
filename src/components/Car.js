@@ -5,7 +5,8 @@ const Car = (props) => {
 
   return (
     <div>
-
+      <img src={props.image} height={'200px'} width={'300px'}>
+      </img>
       <h3>
         {props.year} {props.make} {props.model}
       </h3>

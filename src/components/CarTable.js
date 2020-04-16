@@ -15,6 +15,7 @@ const CarTable = (props) => {
             year={item.year}
             price={item.price}
             description={item.description}
+            image={item.image}
           />
         )
       })}

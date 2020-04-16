@@ -1,10 +1,10 @@
 import React from 'react'
 import Review from './Review'
+import axios from 'axios'
 
 const ReviewList = (props) => {
   
-  //fetch reviews for car
-  //lifecycle hook
+  axios.get('http://localhost:3000/comment')
 
   return (
     <div>
